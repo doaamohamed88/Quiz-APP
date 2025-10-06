@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
 import { QuizContext } from "../store/QuizContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Welcome() {
   const { createUser } = useContext(QuizContext);
   const [name, setName] = useState("");
+  const navigate= useNavigate();
   function handleStart() {
     if (name.trim()) {
       createUser(name);
       setName("");
+      navigate("/category")
     }
   }
   return (
@@ -28,6 +31,8 @@ export default function Welcome() {
         <button
           className="bg-yellow-400 text-gray-900 font-semibold px-6 py-2 rounded-md shadow-md hover:bg-yellow-300 hover:scale-105 transition-all duration-300"
           onClick={() => handleStart(name)}
+          
+      
         >
           يلا بينا 🚀
         </button>

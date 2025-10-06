@@ -1,10 +1,12 @@
 import React from "react";
 import Welcome from "./Welcome";
 
-export default function QuizPage() {
+export default function Quiz() {
   return (
     <>
-      <Welcome />
+    <div>
+      
+    </div>
     </>
   );
 }

@@ -7,6 +7,8 @@ export const QuizContext = createContext();
 export default function QuizContextProvider({ children }) {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   function createUser(name) {
     const id = uuidv4();
     setCurrentUser({ id: id, userName: name, score: 0 });
@@ -18,7 +20,7 @@ export default function QuizContextProvider({ children }) {
   }, [currentUser]);
   return (
     <>
-      <QuizContext.Provider value={{ users, createUser }}>
+      <QuizContext.Provider value={{ users, createUser ,setSelectedCategory}}>
         {children}
       </QuizContext.Provider>
     </>

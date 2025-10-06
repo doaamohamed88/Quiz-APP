@@ -1,13 +1,15 @@
-import QuizPage from "./pages/QuizPage";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./routes";
 import QuizContextProvider from "./store/QuizContext";
 
 function App() {
   return (
     <>
-    <QuizContextProvider>
-
-      <QuizPage />
-    </QuizContextProvider>
+      <BrowserRouter>
+        <QuizContextProvider>
+          <AppRoutes />
+        </QuizContextProvider>
+      </BrowserRouter>
     </>
   );
 }
