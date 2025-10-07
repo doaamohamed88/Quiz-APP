@@ -20,7 +20,7 @@ export default function QuizContextProvider({ children }) {
   }, [currentUser]);
   return (
     <>
-      <QuizContext.Provider value={{ users, createUser ,setSelectedCategory}}>
+      <QuizContext.Provider value={{ users, createUser ,setSelectedCategory,selectedCategory,currentUser}}>
         {children}
       </QuizContext.Provider>
     </>

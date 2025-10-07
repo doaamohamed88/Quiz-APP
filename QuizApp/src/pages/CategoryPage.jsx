@@ -12,9 +12,9 @@ export default function CategoryPage() {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
-        <CategoryCard src={movies} title="🎬 أفلام" />
-        <CategoryCard src={animals} title="🐾 حيوانات" />
-        <CategoryCard src={sports} title="⚽ رياضة" />
+        <CategoryCard src={movies} title="أفلام" />
+        <CategoryCard src={animals} title="حيوانات" />
+        <CategoryCard src={sports} title="رياضة" />
       </div>
     </div>
   );
