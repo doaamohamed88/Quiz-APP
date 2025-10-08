@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { QuizContext } from "../store/QuizContext";
 import { useNavigate } from "react-router-dom";
-
+// import logo from"../assets/logo.png"
 export default function Welcome() {
   const { createUser } = useContext(QuizContext);
   const [name, setName] = useState("");
@@ -15,7 +15,7 @@ export default function Welcome() {
   }
   return (
     <div className="flex justify-center items-center w-full h-screen">
-      <div className="p-6 w-full lg:w-[600px] bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-2xl flex flex-col items-center space-y-5 animate-fadeIn">
+      <div className="p-6 md:w-[600px] sm:max-w-sm lg:w-[600px] bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-2xl flex flex-col items-center space-y-5 animate-fadeIn">
         <h1 className="text-3xl font-bold text-center text-yellow-400 drop-shadow-lg">
           أدّها ولا لأ؟ 🤔
         </h1>
