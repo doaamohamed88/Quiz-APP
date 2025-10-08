@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: 'Tajawal', sans-serif;
+  font-family: "Tajawal", sans-serif;
   line-height: 1.6;
   color: #f3f3f3;
 }
@@ -17,14 +17,14 @@ html {
 body {
   background: radial-gradient(
       circle at top right,
-      rgba(46, 0, 77, 0.9),
-      rgba(20, 0, 40, 0.95)
+      rgba(241, 210, 70, 0.98),
+      rgba(250, 176, 103, 0.87)
     ),
-    url('logo.png'); /* اختياري */
+    url("logo.png"); /* اختياري */
   background-repeat: no-repeat;
-    background-repeat: repeat;
+  background-repeat: repeat;
   background-position: center top;
-  background-size: cover, 20% auto; 
+  background-size: cover, 20% auto;
   min-height: 100vh;
 
   background-position: center;
@@ -32,4 +32,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(234, 179, 8, 0.7);
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: rgba(31, 41, 55, 0.6);
 }

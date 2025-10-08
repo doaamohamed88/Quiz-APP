@@ -11,7 +11,7 @@ export default function QuizPage() {
   const [randomQuestions, setRandomQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const { selectedCategory } = useContext(QuizContext);
+  const { selectedCategory , addScoreToUser } = useContext(QuizContext);
   const [openModal, setOpenModal] = useState(false);
 
   const progress = (currentIndex / totalQuestions) * 100;
@@ -86,6 +86,13 @@ export default function QuizPage() {
       setOpenModal(true);
     }
   }, [currentIndex]);
+
+  useEffect(() => {
+  if (openModal) {
+    addScoreToUser(score);
+  }
+}, [openModal]);
+
 
   return (
     <>

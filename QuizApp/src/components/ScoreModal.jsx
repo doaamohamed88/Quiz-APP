@@ -12,9 +12,9 @@ export function ScoreModal({ score }) {
 
   return (
     <>
-=      <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-40"></div>
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-40"></div>
 
-=      <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
         <div
           className="bg-yellow-700 rounded-2xl shadow-2xl w-[90%] sm:w-[500px] text-white p-6 relative"
         >

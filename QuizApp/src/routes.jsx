@@ -1,13 +1,15 @@
 import { useRoutes } from "react-router-dom";
 import Quiz from "./pages/QuizPage";
 import Welcome from "./pages/Welcome";
-import ScorePage from "./pages/ScorePage";
 import CategoryPage from "./pages/CategoryPage";
+import LandingPage from "./pages/LandingPage";
 
 const AppRoutes = () => {
   const routes = [
+    {path:"/" ,element:<LandingPage />},
+
     {
-      path: "/",
+      path: "welcom",
       element: <Welcome />,
     },
     {
@@ -17,7 +19,6 @@ const AppRoutes = () => {
     {
         path:"category", element:<CategoryPage/>
     },
-    { path: "score", element: <ScorePage /> },
   ];
   return useRoutes(routes);
 };
