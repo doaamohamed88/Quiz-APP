@@ -6,37 +6,36 @@ import { ScoreModal } from "../components/ScoreModal.jsx";
 
 export default function QuizPage() {
   const totalQuestions = 10;
-  const [currentIndex, setCurrentIndex] = useState(0); // صفر-based index
+  const [currentIndex, setCurrentIndex] = useState(0); 
   const [timeLeft, setTimeLeft] = useState(20);
   const [randomQuestions, setRandomQuestions] = useState([]);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [answered, setAnswered] = useState(false); 
 
   const { selectedCategory, addScoreToUser } = useContext(QuizContext);
 
   const currentQuestion = randomQuestions[currentIndex];
-  const progress = ((currentIndex + 1) / totalQuestions) * 100; // للمستخدم 1..10
+  const progress = ((currentIndex + 1) / totalQuestions) * 100; 
 
-  // 🔀 دالة لاختيار أسئلة عشوائية بدون تكرار
-function getRandomQuestions(categoryQuestions, total) {
-  const result = [];
-  const usedIds = new Set(); // لتجنب التكرار
+  function getRandomQuestions(categoryQuestions, total) {
+    const result = [];
+    const usedIds = new Set(); 
 
-  while (result.length < total && usedIds.size < categoryQuestions.length) {
-    const idx = Math.floor(Math.random() * categoryQuestions.length);
-    const question = categoryQuestions[idx];
+    while (result.length < total && usedIds.size < categoryQuestions.length) {
+      const idx = Math.floor(Math.random() * categoryQuestions.length);
+      const question = categoryQuestions[idx];
 
-    if (!usedIds.has(question.id)) {
-      result.push(question);
-      usedIds.add(question.id);
+      if (!usedIds.has(question.id)) {
+        result.push(question);
+        usedIds.add(question.id);
+      }
     }
+
+    return result;
   }
 
-  return result;
-}
-
-  // 🎯 تحميل الأسئلة عند اختيار الفئة
   useEffect(() => {
     if (!selectedCategory) return;
 
@@ -54,6 +53,7 @@ function getRandomQuestions(categoryQuestions, total) {
     setTimeLeft(20);
     setSelectedAnswer(null);
     setOpenModal(false);
+    setAnswered(false); // ✅ إعادة الضبط
   }, [selectedCategory]);
 
   // ⏱ المؤقت
@@ -74,23 +74,24 @@ function getRandomQuestions(categoryQuestions, total) {
     return () => clearInterval(timerId);
   }, [currentIndex, openModal]);
 
-  // ✅ الانتقال للسؤال التالي
   const handleNextQuestion = () => {
     if (currentIndex < totalQuestions - 1) {
       setCurrentIndex((prev) => prev + 1);
       setTimeLeft(20);
       setSelectedAnswer(null);
+      setAnswered(false); // ✅ إعادة الضبط للسؤال الجديد
     } else {
       setOpenModal(true);
     }
   };
 
-  // ✅ التحقق من الإجابة
   const checkAnswer = (questionId, answer) => {
+    if (answered) return; // يمنع الضغط أكثر من مرة قبل التقدم
+    setSelectedAnswer(answer);
+    setAnswered(true); // ✅ تم الإجابة الآن
+
     const question = randomQuestions.find((q) => q.id === questionId);
     if (!question) return;
-
-    setSelectedAnswer(answer);
 
     if (answer.trim() === question.answer.trim()) {
       setScore((prev) => prev + 1);
@@ -101,14 +102,12 @@ function getRandomQuestions(categoryQuestions, total) {
     }, 400);
   };
 
-  // 🏁 تحديث نتيجة المستخدم عند فتح المودال
   useEffect(() => {
     if (openModal) {
       addScoreToUser(score);
     }
   }, [openModal]);
 
-  // 🔄 إعادة اللعبة
   const startNewGame = () => {
     if (!selectedCategory) return;
 
@@ -126,6 +125,7 @@ function getRandomQuestions(categoryQuestions, total) {
     setTimeLeft(20);
     setSelectedAnswer(null);
     setOpenModal(false);
+    setAnswered(false); // ✅ إعادة الضبط
   };
 
   return (
@@ -165,7 +165,7 @@ function getRandomQuestions(categoryQuestions, total) {
                     key={i}
                     onClick={() => checkAnswer(currentQuestion.id, option)}
                     className={`p-3 rounded-xl cursor-pointer transition w-full text-center ${
-                      selectedAnswer === option
+                      answered && selectedAnswer === option
                         ? option === currentQuestion.answer
                           ? "bg-green-500"
                           : "bg-red-500"
